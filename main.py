@@ -91,21 +91,59 @@
 
 # ]
 # Генерация матрицы
-field = []
-row = []
-def generate_matrix(field, row):
-    for symb in range(1, 100 + 1):
+
+
+"""
+
+    * *
+    * *
+    * *
+    * *
+
+"""
+
+import time
+import os
+
+def generate_field(size_r,size_c):
+    field = []
+    row = []
+    for symb in range(1, size_r * size_c + 1):
         row.append('.')
-        if symb % 10 == 0:
+        if symb % size_c == 0:
             field.append(row)
             row = []
+    return field
 
 # Отображение матрицы
-def show_matrix(field, row):
+def show_field(field):
     for row in field:
         for col in row:
             print(col, end=" ")
         print()
 
-generate_matrix(field, row)
-show_matrix(field, row)
+if __name__ == "__main__":
+    row = int(input("Enter the row size:"))
+    col = int(input("Enter the col size:"))
+    field = generate_field(row,col)
+    cord_row = int(row/2)
+    cord_col = int(col/2)
+    while cord_col != col:
+        os.system("clear")
+        field[cord_row][cord_col] = "&"
+        show_field(field)
+        cord_col += 1 
+        time.sleep(1)
+# snake
+
+# row - 6
+# col - 8
+
+"""
+
+    DZ
+    1 - Залить текущую версию на гит 
+        в комите написать - начало работы над змейкой
+    2 - Доработать идею что при движении вправо головы старые элементы исщезают
+
+"""
